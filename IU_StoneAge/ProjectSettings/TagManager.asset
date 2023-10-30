@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - mainCamera
+  - Tree
+  - Rock
+  - NPC
+  - Building
   layers:
   - Default
   - TransparentFX
