@@ -5,7 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - mainCamera
-  - CinemachineTarget
+  - Tree
+  - Rock
+  - NPC
+  - Building
   layers:
   - Default
   - TransparentFX
