@@ -9,6 +9,8 @@ TagManager:
   - Rock
   - NPC
   - Building
+  - MapButton
+  - MiniMap
   layers:
   - Default
   - TransparentFX
