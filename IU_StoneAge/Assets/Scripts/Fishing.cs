@@ -26,7 +26,7 @@ public class Fishing : MonoBehaviour
 		remainingTime = totalTime;			// 남은 시간 초기화
 		UpdateGaugeUI();
 
-		StartCoroutine(GameStart());
+		StartCoroutine(GameStart());     
 	}
 
 	private void Update()
