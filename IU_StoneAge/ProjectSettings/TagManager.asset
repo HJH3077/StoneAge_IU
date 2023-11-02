@@ -12,6 +12,8 @@ TagManager:
   - MapButton
   - MiniMap
   - Exit
+  - GrandFather
+  - BlackSmith
   layers:
   - Default
   - TransparentFX
