@@ -22,13 +22,22 @@ public class SJH_MiniMapLoader : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(eventData.pointerPress.tag);
         if (eventData.pointerPress.CompareTag("MapButton")){
-            miniMap.SetActive(true);
-        }
-        else if (eventData.pointerPress.CompareTag("MiniMap"))
-        {
-            miniMap.SetActive(false);
+            if (miniMap.activeSelf)
+            {
+                miniMap.SetActive(false);
+                Time.timeScale = 1f;
+
+                if (eventData.pointerPress.CompareTag("Exit"))
+                {
+                    Application.Quit();
+                }
+            }
+            else
+            {
+                miniMap.SetActive(true);
+                Time.timeScale = 0.2f;
+            }
         }
     }
 
