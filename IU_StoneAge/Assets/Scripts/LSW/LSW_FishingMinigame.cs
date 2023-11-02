@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -11,13 +12,15 @@ public class LSW_FishingMinigame : MonoBehaviour
 	/// then when in the minigame state it controls the movement of the catching
 	/// bar and selects which fish we are catching.
 	/// </summary>
+	/// 
+	
 	
 	//These bools are just for keeping track of the state of the minigame we are in
 	private bool lineCast = false;
     private bool nibble = false;
     public bool reelingFish = false;
 
-    private Fish currentFishOnLine; //Reference to the current fish we are catching (Fish class is in Fish.cs)
+    private LSW_Fish currentFishOnLine; //Reference to the current fish we are catching (Fish class is in Fish.cs)
 
     //These are references for the gameobjects used in the UI
     [Header("Setup References")]
@@ -28,7 +31,9 @@ public class LSW_FishingMinigame : MonoBehaviour
     
     //This is the fish on the UI that you are chasing to catch
     [SerializeField] private GameObject fishBar;
-    private FishingMinigame_FishTrigger fishTrigger; //Reference to this script on the fish
+	public GameObject fishBar2;
+
+    private LSW_FishingMinigame_FishTrigger fishTrigger; //Reference to this script on the fish
     private bool inTrigger = false; //Whether or not the fish is inside the "catchingbar"
     
     private float catchPercentage = 0f; //0-100 how much you have caught the fish
@@ -41,7 +46,11 @@ public class LSW_FishingMinigame : MonoBehaviour
     [SerializeField] private KeyCode fishingKey = KeyCode.Space; //Key used to play
     [SerializeField] private float catchMultiplier = 10f; //Higher means catch fish faster x
     [SerializeField] private float catchingForce; //How much force to push the catchingbar up by
-    
+
+	//물고기 마리와 이미지UI띠우기
+	public int fishCount = 0;
+	public GameObject fishHunted;
+
     private void Start() {
 	    catchingBarRB = catchingbar.GetComponent<Rigidbody2D>(); //Get reference to the Rigidbody on the catchingbar
 	    catchingBarLoc = catchingbar.GetComponent<RectTransform>().localPosition; //Use this to reset the catchingbars position to the bottom of the "water"
@@ -78,7 +87,7 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    
 	    //Changes fish from silhoutte to colour over time
 	    var fishColor = Color.Lerp(Color.black, Color.white, Map(0, 100, 0, 1, catchPercentage));
-	    fishBar.GetComponent<Image>().color = fishColor;
+		fishBar.GetComponent<Image>().color = fishColor;
 	    
 	    //Clamps our percentage between 0 and 100
 	    catchPercentage = Mathf.Clamp(catchPercentage, 0, 100);
@@ -86,7 +95,10 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    if (catchPercentage >= 100) { //Fish is caught if percentage is full
 		    catchPercentage = 0;
 		    FishCaught();
-	    }
+            var tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
+
+            fishBar2.GetComponent<Image>().sprite = tempSprite;
+        }
     }
     
     //Called to cast our line
@@ -112,16 +124,25 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    lineCast = false;
 	    
 	    //Set up the fish we are catching
-	    currentFishOnLine = FishManager.GetRandomFishWeighted();
+	    currentFishOnLine = LSW_FishManager.GetRandomFishWeighted();
 	    var tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
-	    fishBar.GetComponent<Image>().sprite = tempSprite;
+		
+		fishBar.GetComponent<Image>().sprite = tempSprite;
+        
 
-	    //Changes the width and height of the fishBar to accomodate for wider sprites
-	    var w = Map(0, 32, 0, 100, tempSprite.texture.width);
+        //잡은 물고기 이미지를 catchedsprite에 저장
+        var catchedSprite = tempSprite;
+		// 
+		
+
+        //Changes the width and height of the fishBar to accomodate for wider sprites
+        var w = Map(0, 32, 0, 100, tempSprite.texture.width);
 	    var h = Map(0, 32, 0, 100, tempSprite.texture.height);
 	    fishBar.GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
-	    
-	    minigameCanvas.SetActive(true);
+        //fishBar2.GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
+
+
+        minigameCanvas.SetActive(true);
     }
     
     //This breaks the line if we are waiting for a response too long
@@ -150,7 +171,7 @@ public class LSW_FishingMinigame : MonoBehaviour
     //Called when the catchpercentage hits 100
     public void FishCaught() {
 	    if (currentFishOnLine == null) { //This picks a new fish if the old one is lost by chance
-		    currentFishOnLine = FishManager.GetRandomFish();
+		    currentFishOnLine = LSW_FishManager.GetRandomFish();
 	    }
 	    Debug.Log($"Caught a: {currentFishOnLine.name}");
 	    reelingFish = false; //No longer reeling in a fish
@@ -159,6 +180,10 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    thoughtBubbles.GetComponent<Animator>().SetTrigger("Reset");
 	    minigameCanvas.SetActive(false); //Disable the fishing canvas
 	    catchingbar.transform.localPosition = catchingBarLoc; //Reset the catching bars position
+        
+		
+		
+
     }
     
 
