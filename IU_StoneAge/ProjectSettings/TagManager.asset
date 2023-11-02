@@ -9,6 +9,9 @@ TagManager:
   - Rock
   - NPC
   - Building
+  - MapButton
+  - MiniMap
+  - Exit
   layers:
   - Default
   - TransparentFX
