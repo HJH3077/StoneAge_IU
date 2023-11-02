@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class FishingMinigame : MonoBehaviour
+public class LSW_FishingMinigame : MonoBehaviour
 {
 	/// <summary>
 	/// This is the main fishing minigame code. It controls the states of fishing,

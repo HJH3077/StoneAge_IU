@@ -11,10 +11,10 @@ public class FishingMinigame_FishTrigger : MonoBehaviour
    /// </summary>
    
    public bool beingCaught = false;
-   private FishingMinigame minigameController;
+   private LSW_FishingMinigame minigameController;
 
    private void Start() {
-      minigameController = FindObjectOfType<FishingMinigame>();
+      minigameController = FindObjectOfType<LSW_FishingMinigame>();
    }
 
    private void OnTriggerEnter2D(Collider2D other) {
