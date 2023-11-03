@@ -8,7 +8,7 @@ public class SelectGenderMan : MonoBehaviour
     public GameObject Camera;
     public GameObject ManDetail;
     public GameObject WomanDetail;
-    public GameObject Man;
+    public GameObject manAvarta;
 
     public void OnClickMan()
     {
@@ -19,7 +19,7 @@ public class SelectGenderMan : MonoBehaviour
 
     public void OnClickWoman()
     {
-        Man.SetActive(false);
+        manAvarta.SetActive(false);
         WomanDetail.SetActive(true);
         this.gameObject.SetActive(false);
     }
