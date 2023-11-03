@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CustomManager : MonoBehaviour
 {
-    public GameObject Camera;
     public GameObject WomanHead;
     public GameObject WomanBody;
     public GameObject ManHead;
@@ -48,14 +47,12 @@ public class CustomManager : MonoBehaviour
         // 남 아바타가 활성화되어있으면 남 UI끄기
         if(man.activeSelf)
         {
-            Camera.transform.localPosition = new Vector3(2, 1, 2);
             ManBody.SetActive(false);
             ManHead.SetActive(false);
             transform.Find("HeadOrBody").gameObject.SetActive(true);
         }
         else
         {
-            Camera.transform.localPosition = new Vector3(0, 1, 2);
             WomanBody.SetActive(false);
             WomanHead.SetActive(false);
             transform.Find("HeadOrBody").gameObject.SetActive(true);
