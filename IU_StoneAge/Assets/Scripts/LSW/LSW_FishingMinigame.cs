@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,32 +48,45 @@ public class LSW_FishingMinigame : MonoBehaviour
     [SerializeField] private float catchMultiplier = 10f; //Higher means catch fish faster x
     [SerializeField] private float catchingForce; //How much force to push the catchingbar up by
 
-	//물고기 마리와 이미지UI띠우기
-	public int fishCount = 0;
-	public GameObject fishHunted;
+
+	/// //
+
+	[SerializeField] private GameObject canvas_Fishing;
+	public TextMeshPro textfishCount;
+    public string fishName;
+	public int fishCount;
+	public int fishLevel;
 
     private void Start() {
 	    catchingBarRB = catchingbar.GetComponent<Rigidbody2D>(); //Get reference to the Rigidbody on the catchingbar
 	    catchingBarLoc = catchingbar.GetComponent<RectTransform>().localPosition; //Use this to reset the catchingbars position to the bottom of the "water"
-    }
+		canvas_Fishing.SetActive(false);
+		
+	}
 
     private void Update() {
 	    if (!reelingFish) { //If we arent currently in the reeling stage
-		    if (Input.GetKeyDown(fishingKey) && !lineCast) { //This is if we are doing nothing and are ready to cast a line
-			    CastLine();
-		    }else if (Input.GetKeyDown(fishingKey) && lineCast && !nibble) { //This is if the line has cast and we reel in before we get a nibble
+		    if (Input.GetKeyDown(fishingKey) && !lineCast) 
+			{ //This is if we are doing nothing and are ready to cast a line
+				CastLine();
+		    }
+			else if (Input.GetKeyDown(fishingKey) && lineCast && !nibble) 
+			{ //This is if the line has cast and we reel in before we get a nibble
 			    StopAllCoroutines(); //Stops the WaitForNibble timer
 			    lineCast = false; //Resets the line being cast
 			    
 			    //Resets the thought bubbles
 			    thoughtBubbles.GetComponent<Animator>().SetTrigger("Reset");
-			    thoughtBubbles.SetActive(false);
+				thoughtBubbles.SetActive(false);
 			    
 		    }else if (Input.GetKeyDown(fishingKey) && lineCast && nibble) { //This is if we reel in while there is a nibble
 			    StopAllCoroutines(); //Stops the LineBreak timer
 			    StartReeling();
 		    }
-	    } else { //This is when we are in the stage where we are fighitng for the fish
+	    } 
+
+		else 
+		{ //This is when we are in the stage where we are fighitng for the fish
 		    if (Input.GetKey(fishingKey)) { //If we press space
 			    catchingBarRB.AddForce(Vector2.up * catchingForce * Time.deltaTime, ForceMode2D.Force); //Add force to lift the bar
 		    }
@@ -98,7 +112,13 @@ public class LSW_FishingMinigame : MonoBehaviour
             var tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
 
             fishBar2.GetComponent<Image>().sprite = tempSprite;
+
+            
+        
+			
         }
+        
+
     }
     
     //Called to cast our line
@@ -131,8 +151,8 @@ public class LSW_FishingMinigame : MonoBehaviour
         
 
         //잡은 물고기 이미지를 catchedsprite에 저장
-        var catchedSprite = tempSprite;
-		// 
+        //var catchedSprite = tempSprite;
+		
 		
 
         //Changes the width and height of the fishBar to accomodate for wider sprites
@@ -180,12 +200,26 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    thoughtBubbles.GetComponent<Animator>().SetTrigger("Reset");
 	    minigameCanvas.SetActive(false); //Disable the fishing canvas
 	    catchingbar.transform.localPosition = catchingBarLoc; //Reset the catching bars position
-        
-		
-		
 
+
+        canvas_Fishing.SetActive(true);
+
+        textfishCount.text = fishCount.ToString();
+        textfishCount.GetComponent<TextMeshPro>().text = "sdfsdf" + fishCount.ToString();
+        if (currentFishOnLine.spriteID == (currentFishOnLine.name))
+        {
+
+            fishCount++;
+
+        }
     }
-    
+
+    public void Fishnamecount(string _name, int _count,int _level)
+    {
+        this.fishName = _name;
+		this.fishCount = _count;
+		this.fishLevel = _level;
+    }
 
     //Classic mapping script x
     private float Map(float a, float b, float c, float d, float x) {

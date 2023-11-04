@@ -1834,6 +1834,7 @@ GameObject:
   - component: {fileID: 1903834708}
   - component: {fileID: 1903834710}
   - component: {fileID: 1903834709}
+  - component: {fileID: 1903834711}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1857,7 +1858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 226, y: 0}
+  m_AnchoredPosition: {x: 175.6, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1903834709
@@ -1957,6 +1958,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903834707}
   m_CullTransparentMesh: 1
+--- !u!114 &1903834711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903834707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8faeec95b59636a46a04d0bd7f91e9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reelingFish: 0
+  catchingbar: {fileID: 0}
+  fishBar: {fileID: 0}
+  fishBar2: {fileID: 0}
+  catchProgressBar: {fileID: 0}
+  thoughtBubbles: {fileID: 0}
+  minigameCanvas: {fileID: 0}
+  fishingKey: 32
+  catchMultiplier: 10
+  catchingForce: 0
+  canvas_Fishing: {fileID: 172041498}
+  textfishCount: {fileID: 0}
+  fishName: 
+  fishCount: 0
+  fishLevel: 0
 --- !u!1 &2033126134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,8 +2041,11 @@ MonoBehaviour:
   fishingKey: 32
   catchMultiplier: 10
   catchingForce: 30000
+  canvas_Fishing: {fileID: 172041498}
+  textfishCount: {fileID: 1903834707}
+  fishName: 
   fishCount: 0
-  fishHunted: {fileID: 0}
+  fishLevel: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

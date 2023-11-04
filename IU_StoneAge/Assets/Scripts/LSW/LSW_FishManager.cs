@@ -47,12 +47,14 @@ public static class LSW_FishManager
         foreach (var fish in allFish) {
             if (valueChosen < fish.spokeWeight)
             {
+               
                 return fish;   
             } 
             else 
             {
                 valueChosen -= fish.spokeWeight;
             }
+            Debug.Log("¹°°í±â:" + fish.name);
         }
         return null;
     }
