@@ -34,11 +34,9 @@ public class LSW_FishingMinigame : MonoBehaviour
     
     private float catchPercentage = 0f; //0-100 how much you have caught the fish
     [SerializeField] private Slider catchProgressBar; //The bar on the right that shows how much you have caught
-
-	//This is the fish on the UI that you are chasing to catch
-	[SerializeField] private GameObject fishBar;
-	private FishingMinigame_FishTrigger fishTrigger; //Reference to this script on the fish
-	private bool inTrigger = false; //Whether or not the fish is inside the "catchingbar"
+    
+	[SerializeField] private GameObject thoughtBubbles;
+    [SerializeField] private GameObject minigameCanvas;
 
     [Header("Settings")]
     [SerializeField] private KeyCode fishingKey = KeyCode.Space; //Key used to play
@@ -180,6 +178,12 @@ public class LSW_FishingMinigame : MonoBehaviour
 		inTrigger = true;
 	}
 
+    //Called from the FishingMinigame_FishTrigger script
+    public void FishOutOfBar()
+    {
+        inTrigger = false;
+    }
+
     //Called when the catchpercentage hits 100
     public void FishCaught() {
 	    if (currentFishOnLine == null) { //This picks a new fish if the old one is lost by chance
@@ -206,5 +210,11 @@ public class LSW_FishingMinigame : MonoBehaviour
         this.fishName = _name;
 		this.fishCount = _count;
 		this.fishLevel = _level;
+    }
+
+    //Classic mapping script x
+    private float Map(float a, float b, float c, float d, float x)
+    {
+        return (x - a) / (b - a) * (d - c) + c;
     }
 }
