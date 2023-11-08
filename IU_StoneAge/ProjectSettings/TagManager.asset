@@ -14,6 +14,7 @@ TagManager:
   - Exit
   - GrandFather
   - BlackSmith
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
