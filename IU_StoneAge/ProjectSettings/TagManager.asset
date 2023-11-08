@@ -4,6 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - mainCamera
+  - Tree
+  - Rock
+  - NPC
+  - Building
+  - MapButton
+  - MiniMap
+  - Exit
   - CinemachineTarget
   layers:
   - Default
@@ -12,7 +20,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Background
   - 
   - 
   - 
