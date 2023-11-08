@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CustomManager : MonoBehaviour
 {
@@ -67,5 +68,7 @@ public class CustomManager : MonoBehaviour
         Debug.Log("Beard : " + PlayerPrefs.GetString("Beard"));
         Debug.Log("Neck : " + PlayerPrefs.GetString("Neck"));
         Debug.Log("Skin : " + PlayerPrefs.GetString("Skin"));
+
+        SceneManager.LoadScene("Map");
     }
 }
