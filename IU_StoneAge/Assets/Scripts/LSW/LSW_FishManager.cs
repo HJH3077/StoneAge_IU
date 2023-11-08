@@ -54,7 +54,7 @@ public static class LSW_FishManager
             {
                 valueChosen -= fish.spokeWeight;
             }
-            Debug.Log("물고기:" + fish.name);
+            //Debug.Log("물고기:" + fish.name);
         }
         return null;
     }

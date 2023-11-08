@@ -48,16 +48,17 @@ public class LSW_FishingMinigame : MonoBehaviour
 
 	/// //
 
-	[SerializeField] private GameObject canvas_Fishing;
-	public TextMeshPro textfishCount;
+	//[SerializeField] private GameObject canvas_Fishing;
+	//public TextMeshPro textfishCount;
     public string fishName;
 	public int fishCount;
 	public int fishLevel;
 
     private void Start() {
+
 	    catchingBarRB = catchingbar.GetComponent<Rigidbody2D>(); //Get reference to the Rigidbody on the catchingbar
 	    catchingBarLoc = catchingbar.GetComponent<RectTransform>().localPosition; //Use this to reset the catchingbars position to the bottom of the "water"
-		canvas_Fishing.SetActive(false);
+		//canvas_Fishing.SetActive(false);
 		
 	}
 
@@ -98,6 +99,7 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    
 	    //Changes fish from silhoutte to colour over time
 	    var fishColor = Color.Lerp(Color.black, Color.white, Map(0, 100, 0, 1, catchPercentage));
+		
 		fishBar.GetComponent<Image>().color = fishColor;
 	    
 	    //Clamps our percentage between 0 and 100
@@ -109,10 +111,7 @@ public class LSW_FishingMinigame : MonoBehaviour
             var tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
 
             fishBar2.GetComponent<Image>().sprite = tempSprite;
-
-            
-        
-			
+         		
         }
         
 
@@ -194,17 +193,12 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    minigameCanvas.SetActive(false); //Disable the fishing canvas
 	    catchingbar.transform.localPosition = catchingBarLoc; //Reset the catching bars position
 
+	
+        //canvas_Fishing.SetActive(true);
 
-        canvas_Fishing.SetActive(true);
-
-        textfishCount.text = fishCount.ToString();
-        textfishCount.GetComponent<TextMeshPro>().text = "sdfsdf" + fishCount.ToString();
-        if (currentFishOnLine.spriteID == (currentFishOnLine.name))
-        {
-
-            fishCount++;
-
-        }
+        //textfishCount.text = fishCount.ToString();
+        //textfishCount.GetComponent<TextMeshPro>().text = "sdfsdf" + fishCount.ToString();
+       
     }
 
     public void Fishnamecount(string _name, int _count,int _level)
