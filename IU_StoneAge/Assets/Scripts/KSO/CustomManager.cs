@@ -62,5 +62,6 @@ public class CustomManager : MonoBehaviour
     public void OnclickSave()
     {
         Debug.Log("save the Avarta.");
+        SaveNSceneload.SaveCustumizing();
     }
 }
