@@ -15,6 +15,7 @@ public class SelectGenderMan : MonoBehaviour
         Camera.transform.localPosition = new Vector3(2, 1, 2);
         ManDetail.SetActive(true);
         this.gameObject.SetActive(false);
+        PlayerPrefs.SetString("Gender", "Armature_Prehistoric_Male_Avatar");
     }
 
     public void OnClickWoman()
@@ -22,5 +23,6 @@ public class SelectGenderMan : MonoBehaviour
         manAvarta.SetActive(false);
         WomanDetail.SetActive(true);
         this.gameObject.SetActive(false);
+        PlayerPrefs.SetString("Gender", "Armature_Prehistoric_Female_Avatar");
     }
 }

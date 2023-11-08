@@ -10,7 +10,6 @@ public class CustomManager : MonoBehaviour
     public GameObject ManBody;
     public GameObject man;
 
-
     public void OnClickHead()
     {
         if (man.activeSelf)
@@ -62,6 +61,11 @@ public class CustomManager : MonoBehaviour
     public void OnclickSave()
     {
         Debug.Log("save the Avarta.");
-        SaveNSceneload.SaveCustumizing();
+        PlayerPrefs.Save();
+
+        Debug.Log("Hair : " + PlayerPrefs.GetString("Hair"));
+        Debug.Log("Beard : " + PlayerPrefs.GetString("Beard"));
+        Debug.Log("Neck : " + PlayerPrefs.GetString("Neck"));
+        Debug.Log("Skin : " + PlayerPrefs.GetString("Skin"));
     }
 }

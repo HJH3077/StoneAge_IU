@@ -15,10 +15,4 @@ public class SaveNSceneload : MonoBehaviour
     {
         
     }
-
-    public static void SaveCustumizing()
-    {
-        
-    }
-
 }
