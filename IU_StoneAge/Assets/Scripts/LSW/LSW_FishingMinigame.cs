@@ -12,10 +12,14 @@ public class LSW_FishingMinigame : MonoBehaviour
 	/// then when in the minigame state it controls the movement of the catching
 	/// bar and selects which fish we are catching.
 	/// </summary>
+	/// 
+	
+	
 	//These bools are just for keeping track of the state of the minigame we are in
 	private bool lineCast = false;
 	private bool nibble = false;
 	public bool reelingFish = false;
+
     private LSW_Fish currentFishOnLine; //Reference to the current fish we are catching (Fish class is in Fish.cs)
 
     //These are references for the gameobjects used in the UI
@@ -34,9 +38,9 @@ public class LSW_FishingMinigame : MonoBehaviour
     
     private float catchPercentage = 0f; //0-100 how much you have caught the fish
     [SerializeField] private Slider catchProgressBar; //The bar on the right that shows how much you have caught
-    
+
 	[SerializeField] private GameObject thoughtBubbles;
-    [SerializeField] private GameObject minigameCanvas;
+	[SerializeField] private GameObject minigameCanvas;
 
     [Header("Settings")]
     [SerializeField] private KeyCode fishingKey = KeyCode.Space; //Key used to play
@@ -178,11 +182,11 @@ public class LSW_FishingMinigame : MonoBehaviour
 		inTrigger = true;
 	}
 
-    //Called from the FishingMinigame_FishTrigger script
-    public void FishOutOfBar()
-    {
-        inTrigger = false;
-    }
+	//Called from the FishingMinigame_FishTrigger script
+	public void FishOutOfBar()
+	{
+		inTrigger = false;
+	}
 
     //Called when the catchpercentage hits 100
     public void FishCaught() {
@@ -212,9 +216,10 @@ public class LSW_FishingMinigame : MonoBehaviour
 		this.fishLevel = _level;
     }
 
-    //Classic mapping script x
-    private float Map(float a, float b, float c, float d, float x)
-    {
-        return (x - a) / (b - a) * (d - c) + c;
-    }
+	//Classic mapping script x
+	private float Map(float a, float b, float c, float d, float x)
+	{
+		return (x - a) / (b - a) * (d - c) + c;
+	}
+
 }
