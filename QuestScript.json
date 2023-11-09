@@ -1,0 +1,52 @@
+{
+    "questlist":[
+        {"qeustID": "qeust0",
+        "qeusttNPC" : ["Grandfather"],
+        "questStatus" : 0,
+        "require": [{"guide": 0}],
+        "questDialog": [
+            {"Player": "오늘도 아침 운동으로 하루를 시작해보자!"},
+            {"Player": "항상 가던 길이라 익숙한지 반짝거리는걸! 따라가자!"}
+            ]
+        },
+        {"qeustID": "qeust1",
+        "qeustNPC" : ["Grandfather"],
+        "require": [{"minigame": 0}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Grandfather": "반갑구나. 난 이 마을의 대장장이 돌영감이다."},
+            {"Player": "알아요! 마을 최고 대장장이시잖아요!"},
+            {"Grandfather": "그래, 근데 난 이제 돌을 칠 힘이 없구나..."} ,
+            {"Grandfather": "그래서 너가 나를 도와주지 않으련? 전부터 너의 성실함이 마음에 들었단다."},
+            {"Player":"좋아요! 무엇을 도와드릴까요?"},
+            {"Grandfather" : "이 할아버지를 도와 석기를 만들자꾸나."},
+            {"Grandfather": "방법을 알려줄테니 대장간에서 만들어 보거라."}   
+            ]
+        },
+        {"qeustID": "qeust2",
+        "qeustNPC" : ["Grandfather"],
+        "require": [{"minigame": 0}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Grandfather": "해냈구나. 그래, 너라면 잘 할거라 생각했다."},
+            {"Player": "감사합니다!"},
+            {"Grandfather": "너라면... 대장간을 맡길만 할지도 모르겠구나."},
+            {"Player":"할아버지, 어디 가세요?"},
+            {"Grandfather": "나도 이제 옛날같지 않다. 하나뿐인 제자는 실력은 있지만 욕심이 많으니...."},
+            {"Grandfather": "곤란던 참에 널 알았지. 그래, 이 할애비에게 석기제작을 배워보지 않으련?"},
+            {"Player": "좋아요! 한 번 해볼게요!"},
+            {"Grandfather": "그래, 넌 재능도 있으니 잘할게다. 제자가 된 기념으로 00석기를 한 번 만들어 보거라."}
+            ]
+        },
+        {"qeustID": "qeust3",
+        "qeustNPC" : ["Crafting_NPC_1"],
+        "require": [{"minigame": 0}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Crafting_NPC_1": "너, 운이 좋았네. 마지막이겠지만."},
+            {"Player":"할아버지께서 재능있다고 하셨어."},
+            {"Crafting_NPC_1": "그래봤자 대장간은 내꺼야."}
+            ]
+        }
+    ]
+}
