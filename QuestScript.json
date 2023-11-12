@@ -1,51 +1,187 @@
 {
     "questlist":[
-        {"qeustID": "qeust0",
-        "qeusttNPC" : ["Grandfather"],
+        {"questID": "qeust0",
+        "questNPC" : ["Grandfather"],
         "questStatus" : 0,
         "require": [{"guide": 0}],
         "questDialog": [
             {"Player": "오늘도 아침 운동으로 하루를 시작해보자!"},
             {"Player": "항상 가던 길이라 익숙한지 반짝거리는걸! 따라가자!"}
+            ],
+        "questFinish": [
             ]
         },
-        {"qeustID": "qeust1",
-        "qeustNPC" : ["Grandfather"],
-        "require": [{"minigame": 0}],
+        {"questID": "qeust1",
+        "questNPC" : ["Grandfather", "Grandfather"],
+        "require": [{"guide": 1},{"minigame": 0}],
         "questStatus" : 0,
         "questDialog":[
             {"Grandfather": "반갑구나. 난 이 마을의 대장장이 돌영감이다."},
-            {"Player": "알아요! 마을 최고 대장장이시잖아요!"},
+            {"Player": "알아요! 마을 최고 석기장인이시잖아요!"},
             {"Grandfather": "그래, 근데 난 이제 돌을 칠 힘이 없구나..."} ,
             {"Grandfather": "그래서 너가 나를 도와주지 않으련? 전부터 너의 성실함이 마음에 들었단다."},
             {"Player":"좋아요! 무엇을 도와드릴까요?"},
             {"Grandfather" : "이 할아버지를 도와 석기를 만들자꾸나."},
-            {"Grandfather": "방법을 알려줄테니 대장간에서 만들어 보거라."}   
+            {"Grandfather": "방법을 알려줄테니 내 공방에서 만들어 보거라."}   
+            ],
+        "questFinish": [
+            {"Grandfather": "해냈구나. 그래, 너라면 잘 할거라 생각했다."}
             ]
         },
-        {"qeustID": "qeust2",
-        "qeustNPC" : ["Grandfather"],
+        {"questID": "qeust2",
+        "questNPC" : ["Grandfather", "Grandfather"],
         "require": [{"minigame": 0}],
         "questStatus" : 0,
         "questDialog":[
-            {"Grandfather": "해냈구나. 그래, 너라면 잘 할거라 생각했다."},
-            {"Player": "감사합니다!"},
             {"Grandfather": "너라면... 대장간을 맡길만 할지도 모르겠구나."},
             {"Player":"할아버지, 어디 가세요?"},
             {"Grandfather": "나도 이제 옛날같지 않다. 하나뿐인 제자는 실력은 있지만 욕심이 많으니...."},
             {"Grandfather": "곤란던 참에 널 알았지. 그래, 이 할애비에게 석기제작을 배워보지 않으련?"},
             {"Player": "좋아요! 한 번 해볼게요!"},
             {"Grandfather": "그래, 넌 재능도 있으니 잘할게다. 제자가 된 기념으로 00석기를 한 번 만들어 보거라."}
+            ],
+        "questFinish": [
+            {"Grandfather": "좋은 석기구나. 내 제자가 된 걸 축하한다."}
             ]
         },
-        {"qeustID": "qeust3",
-        "qeustNPC" : ["Crafting_NPC_1"],
+        {"questID": "qeust3",
+        "questNPC" : ["Crafting_NPC_1", "Grandfather"],
         "require": [{"minigame": 0}],
         "questStatus" : 0,
         "questDialog":[
             {"Crafting_NPC_1": "너, 운이 좋았네. 마지막이겠지만."},
             {"Player":"할아버지께서 재능있다고 하셨어."},
-            {"Crafting_NPC_1": "그래봤자 대장간은 내꺼야."}
+            {"Crafting_NPC_1": "그래봤자 할아버지의 공방은 내꺼야. 날 이길 수 없을걸?"},
+            {"Player": "그건 두고 봐야죠!"},
+            {"Crafting_NPC_1": "그러든가. 그럼 석기 제작으로 승부를 보자. 앞으로 진 사람이 이긴 사람 허드렛일 해주기로."},
+            {"Player":"허드렛일....?"},
+            {"Crafting_NPC_1": "심부름말이야. 만들고 할아버지께 가져가. 할아버지가 점수를 매겨주실거다."},
+            {"Crafting_NPC_1": "결국엔 내가 이기겠지만. 그럼 가봐"},
+            {"Player": "자기 할 말만 하네... 우이씽... 내가 이겨서 코를 납작하게 눌러준다!"}
+            ],
+        "questFinish": [
+            {"Grandfather": "흠... 아무래도 아직 경험을 이길 순 없는 것 같구나. 너가 졌다."},
+            {"Player": "말도 안돼!"},
+            {"Grandfather": "둘이서 내기를 했다지? 다시 00이한테 가보거라."}
+            ]
+        },
+        {"questID": "qeust4",
+        "questNPC" : ["Crafting_NPC_1", "Fishing_NPC_2"],
+        "require": [{"guide": 4}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Crafting_NPC_1": "거봐. 내가 이겼지?"},
+            {"Crafting_NPC_1": "요즘 할아버지가 편찮으셔. 식사도 내가 준비하고 있지."},
+            {"Crafting_NPC_1": "그래서 말인데 물가에서 물고기를 좀 구해와. 난 저녁 준비를 하고 있을테니."},
+            {"Player": "할아버지가 몸이 많이 안 좋으셨구나... 일단 물가로 가보자."}
+            ],
+        "questFinish": [
+            {"Fishing_NPC_2": "음? 낚시를 하러 왔니?"}
+            ]
+        },
+        {"questID": "qeust5",
+        "questNPC" : ["Crafting_NPC_1", "Fishing_NPC_2"],
+        "require": [{"minigame": 2}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Fishing_NPC_2": "너... 구석에 있는 집에 사는 애 맞지?"},
+            {"Player": "저를 아세요?"},
+            {"Fishing_NPC_2": "그래.. 알다마다....흠흠"},
+            {"Fishing_NPC_2": "물고기를 잡으러 왔니? 내가 도와줄테니 빨리 잡고 가라."},
+            {"Player": "감사합니다!"}
+            ],
+        "questFinish": [
+            {"Crafting_NPC_1": "처음치곤 괜찮은 물고기네. 수고했어."}
+            ]
+        },
+        {"questID": "qeust6",
+        "questNPC" : ["Crafting_NPC_1", "Praying_NPC_1"],
+        "require": [{"guide": 6}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Crafting_NPC_1": "큰일이야! 할아버지가 사라지셨어."},
+            {"Player": "네? 할아버지가요?"},
+            {"Fishing_NPC_2": "원래 공방밖으로 잘 나가지도 않는 분인데.... 같이 찾아보자."},
+            {"Fishing_NPC_2": "내가 마을밖을 찾아볼테니 넌 마을 주민들에게 할아버지를 본적있는지 물어봐. 찾으면 알려주기다!"}
+            ],
+        "questFinish": [
+            {"Praying_NPC_1": "돌영감말이야? 내가 봤지. 난 매일 여기서 기도를 드리거든."}
+            ]
+        },
+        {"questID": "qeust7",
+        "questNPC" : ["Praying_NPC_1", "Grandfather"],
+        "require": [{"guide": 7}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Praying_NPC_1": "아까 너희집쪽으로 가시던걸?"},
+            {"Player": "제 집은 어떻게 아세요?"},
+            {"Fishing_NPC_2": "내가 이 마을의 촌장이기 때문이지. 난 마을의 중앙에서 마을의 안녕을 빌고 지켜보는 게 일이란다."},
+            {"Player": "몰랐어요..."},
+            {"Praying_NPC_1": "마을사람들이 밖에서 들어왔던 너희 가족을 인정하려 하지 않았으니까. 대화를 나눌 일이 적었던 너는 모르는게 당연하단다."},
+            {"Praying_NPC_1": "하지만.. 이제 널 받아들일 준비가 된것같기도 하구나. 뒤늦게라도..."},
+            {"Player": "그게 무슨 말씀이세요?"},
+            {"Praying_NPC_1": "내가 너를 너무 오래 붙잡았구나. 할아버지를 찾아야지. 어서 가보렴."}
+            ],
+        "questFinish": [
+            {"Grandfather": "응? 어디 갔던 게냐? 너에게 말해줄게 있어서 너희집을 찾아왔다."}
+            ]
+        },
+        {"questID": "qeust8",
+        "questNPC" : ["Grandfather", "Grandfather"],
+        "require": [{"guide": 8}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Grandfather": "그래, 석기 만들기는 잘 되고 있나?"},
+            {"Player": "네. 00이 자꾸 이상한 심부름을 시키긴 하지만...."},
+            {"Grandfather": "하하하. 그녀석 툴툴대긴 해도 나쁜 녀석은 아니다. 속은 꽤 깊은 아이야."},
+            {"Player": "네..."},
+            {"Grandfather": "일단 사과를 하고 싶구나."},
+            {"Grandfather": "너희 부모님의 일은.... 나도 참 안타깝게 생각해."},
+            {"Player": "....저희 부모님에 대해 아세요?"},
+            {"Grandfather": "너희 어머니가 아플때 마을 사람들은 외면했지. 지금도 후회하고 있어."},
+            {"Grandfather": "약초를 구하기 위해 네 아버지는 홀로 마을을 나갔고 다시 돌아오지 않았지... 약초를 구하지도, 무언갈 먹지도 못한 네 어머니는 끝내.."},
+            {"Player": "그만! 그만해주세요.. 제발..."},
+            {"Grandfather": "... 미안하다."},
+            {"Player": "저희가 힘들때는 보지도 않고 이제와서 사과하시는 건가요? 이제 아빠도, 엄마도 그 사과를 받을 수 없는데..."},
+            {"Grandfather": "네 아버지가.. 떠나기전에... 널 부탁한다는 말을 남겼단다. 그래서 널 계속 지켜봤던거고. 잘 커줘서 고맙구나."},
+            {"Player": "...."},
+            {"Grandfather": "그래서 난 마을사람들이 널 받아들이도록 노력할거다. 내가 이세상을 떠나기전에.. 너가 혼자 살아갈 수 있도록... 내 최선을 다하마."},
+            {"Player": "마을 사람들이 저를 피하는 건 알고 있었어요. 혹시라도 아빠가 보일까봐 내일 아침마다 마을을 돌 때... 사람들이 저를 어떻게 보는지도요."},
+            {"Grandfather": "어린 널.... 더이상 혼자두지 않을거다. 정말 내 손자로 들이고 싶은데... 날 용서해줄 수 있겠니?"},
+            {"Player":"저도 모르겠어요. 하지만... 아빠의 마지막말이 그랬다면... 아빠의 말을 따르고 싶어요."},
+            {"Grandfather": "고맙구나. 정말 고마워. 그럼 집을 정리하고 할아버지집으로 오렴. 원한다면 정리하지 않아도 돼. 이따보자꾸나."}
+            ],
+        "questFinish": [
+            {"Grandfather": "아가야, 어서 오렴."}
+            ]
+        },
+        {"questID": "qeust9",
+        "questNPC" : ["Grandfather", "Crafting_NPC_1"],
+        "require": [{"guide": 9}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Grandfather": "이 할아버지가 맛있는 걸 해주마. 뭐 먹고 싶은거 있니?"},
+            {"Player": "맛있는거... 아! 00이!"},
+            {"Grandfather": "응? 00이가 아무리 괴롭혀도 먹는건 아니란다.."},
+            {"Player": "아니요 할아버지. 00이랑 할아버지를 찾고 있었어요! 할아버지가 안보인다고... 찾으면 알려주기로 했는데.... 깜박했다.."},
+            {"Grandfather": "아이고, 이 할아버지 찾느라 고생 꽤나 하고있겠구나. 어서 말해주러 가렴."}
+            ],
+        "": [
+            {"Crafting_NPC_1": "야.. 너... 어디갔다 이제 온거야?"}
+            ]
+        },
+        {"questID": "qeust10",
+        "questNPC" : ["Grandfather"],
+        "require": [{"minigame": 1}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Crafting_NPC_1": "큰일이야! 할아버지가 사라지셨어."},
+            {"Player": "네? 할아버지가요?"},
+            {"Fishing_NPC_2": "원래 공방밖으로 잘 나가지도 않는 분인데...."},
+            {"Fishing_NPC_2": "내가 마을밖을 찾아볼테니 넌 마을 주민들에게 할아버지를 본적있는지 물어봐."}
+            ],
+        "questFinish": [
+            {"Praying_NPC_1": "돌영감말이야? 내가 봤지. 난 매일 여기서 기도를 드리거든."}
             ]
         }
     ]
