@@ -20,7 +20,7 @@
             {"Player": "알아요! 마을 최고 석기장인이시잖아요!"},
             {"Grandfather": "그래, 근데 난 이제 돌을 칠 힘이 없구나..."} ,
             {"Grandfather": "그래서 너가 나를 도와주지 않으련? 전부터 너의 성실함이 마음에 들었단다."},
-            {"Player":"좋아요! 무엇을 도와드릴까요?"},
+            {"Player":"한번해볼게요. 무엇을 도와드릴까요?"},
             {"Grandfather" : "이 할아버지를 도와 석기를 만들자꾸나."},
             {"Grandfather": "방법을 알려줄테니 내 공방에서 만들어 보거라."}   
             ],
@@ -35,9 +35,9 @@
         "questDialog":[
             {"Grandfather": "너라면... 대장간을 맡길만 할지도 모르겠구나."},
             {"Player":"할아버지, 어디 가세요?"},
-            {"Grandfather": "나도 이제 옛날같지 않다. 하나뿐인 제자는 실력은 있지만 욕심이 많으니...."},
-            {"Grandfather": "곤란던 참에 널 알았지. 그래, 이 할애비에게 석기제작을 배워보지 않으련?"},
-            {"Player": "좋아요! 한 번 해볼게요!"},
+            {"Grandfather": "나도 이제 옛날같지 않다. 하나뿐인 제자는 실력은 있지만 버릇이 없어....떼잉 쯧."},
+            {"Grandfather": "마침 곤란던 차에 널 알았지. 그래, 이 할애비에게 석기제작을 배워보지 않으련?"},
+            {"Player": "한 번 해볼게요..."},
             {"Grandfather": "그래, 넌 재능도 있으니 잘할게다. 제자가 된 기념으로 00석기를 한 번 만들어 보거라."}
             ],
         "questFinish": [
@@ -171,17 +171,100 @@
             ]
         },
         {"questID": "qeust10",
-        "questNPC" : ["Grandfather"],
-        "require": [{"minigame": 1}],
+        "questNPC" : ["Crafting_NPC_1","Grandfather"],
+        "require": [{"guide": 10}],
         "questStatus" : 0,
         "questDialog":[
-            {"Crafting_NPC_1": "큰일이야! 할아버지가 사라지셨어."},
-            {"Player": "네? 할아버지가요?"},
-            {"Fishing_NPC_2": "원래 공방밖으로 잘 나가지도 않는 분인데...."},
-            {"Fishing_NPC_2": "내가 마을밖을 찾아볼테니 넌 마을 주민들에게 할아버지를 본적있는지 물어봐."}
+            {"Crafting_NPC_1": "할아버지를? 정말.... 정말 다행이네. 고생했어. 고맙다."},
+            {"Crafting_NPC_1": "할아버지는 갈 곳 없는 날 거둬주신 고마운 분이셔. 부모님은... 사냥을 나갔다가 돌아오지 않았다는 흔한 얘기지 뭐."},
+            {"Player": "그게 흔한가요?"},
+            {"Crafting_NPC_1": "솔직히 저 큰 녀석들을 사람이 맨 손으로 때려잡는 게 쉽겠어?"},
+            {"Player": "맨 손이 아니라면요?"},
+            {"Crafting_NPC_1": "뭐라고?"},
+            {"Player": "맨 손이 아니라면.... 좋은 무기와 도구를 가진다면 사람들이 많이 돌아올까요?"},
+            {"Crafting_NPC_1":"허, 당연한 소릴 하고 있네. 맨손보단 도구가 낫겠지."},
+            {"Player": "더 좋은 도구라면 더 많은 사람이 살아 돌아오겠죠?"},
+            {"Crafting_NPC_1": "너 설마...."},
+            {"Player": "공방은 제가 이을거에요. 좋은 석기를 만들어서 많은 사람을 살릴거에요."},
+            {"Crafting_NPC_1":"욕심이 없는 것 같았는데."},
+            {"Player": "아빠도.... 좋은 도구가 있었다면 빨리 돌아올 수 있었겠죠?"},
+            {"Crafting_NPC_1":".... 배고파서 난 밥이나 먹어야겠다. 넌 할아버지한테나 가봐."}
             ],
         "questFinish": [
-            {"Praying_NPC_1": "돌영감말이야? 내가 봤지. 난 매일 여기서 기도를 드리거든."}
+            {"Grandfather": "어서오렴. 마침 부탁할 게 있었단다."}
+            ]
+        },
+        {"questID": "qeust11",
+        "questNPC" : ["Grandfather","Crafting_NPC_1"],
+        "require": [{"guide": 10}, {"minigame":1}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Grandfather": "내가 너에게 석기를 만드는 방법을 한가지만 알려주었더구나. 이제 다른 방법도 알아야지."},
+            {"Player": "어서 알려주세요!"},
+            {"Grandfather":"녀석, 그만 보채거라. 전보다 의욕이 넘치는 것같은데 또 내기라도 걸었니?"},
+            {"Player": "공방은 제가 할거에요! 하고싶어요!"},
+            {"Grandfather": "눈에 생기가 돌고 있구나... 그래, 공방으로 가자. 새 석기를 만들어보자꾸나."}
+            ],
+        "questFinish": [
+            {"Grandfather": "석기를 완성했구나. 잘했다. 00이가 할 말이 있는 것 같더구나."}
+            ]
+        },
+        {"questID": "qeust12",
+        "questNPC" : ["Crafting_NPC_1","Crafting_NPC_1"],
+        "require": [{"minigame":0}, {"minigame":1}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Crafting_NPC_1": "할아버지한테는 갔다 왔어?"},
+            {"Player": "네."},
+            {"Crafting_NPC_1": "공방을... 그러니까 너가 할아버지의 후계자가 되고 싶다는거지?"},
+            {"Player": "네."},
+            {"Crafting_NPC_1": "후.... 그래. 너도 알다시피 할아버지의 제자는 나뿐이었어."},
+            {"Crafting_NPC_1": "너가 없었다면 내가 공방을 이어 받았겠지. 언젠가 할아버지가 돌아가신다면 내게 남는 건 공방뿐이야."},
+            {"Crafting_NPC_1": "그러니까 나도 공방을 포기할 수 없어. 서로 후계자 자리를 두고 겨루자, 누가 더 나은 석기를 만드는지."},
+            {"Player": "좋은 석기를 만든다니요?"},
+            {"Crafting_NPC_1":"알맞은 돌과 세기로 만들어서 더 날카롭고 단단한 석기를 만드는 사람이 이기는 거야. 뗀석기와 간석기 둘다."},
+            {"Player": "좋아요! 제가 이겨도 말바꾸지 마세요!"},
+            {"Crafting_NPC_1": "난 내가 한 말은 지켜. 그리고.... 이제는 형이라 불러라. 말도 편하게 하고."},
+            {"Player":"네? 뭐라고요?"},
+            {"Crafting_NPC_1":"....형...이라 부르라고... 가..가라!"},
+            {"Player": "형 얼굴이 빨개진 것 같은데!"},
+            {"Crafting_NPC_1": "화내기 전에 가라."},
+            {"Player": "네, 형!"}
+            ],
+        "questFinish": [
+            {"Crafting_NPC_1": "다 만들었나? 누가 이겼는지는 할아버지가 보고 말해주실거야. 할아버지한테 가자."}
+            ]
+        },
+        {"questID": "qeust13",
+        "questNPC" : ["Grandfather","Crafting_NPC_1"],
+        "require": [{"guide": 13}, {"minigame":2}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Grandfather": "그래. 이제 누가 내 공방을 받을지 정하자꾸나."},
+            {"Grandfather": "....으음....."},
+            {"Grandfather": "......."},
+            {"Grandfather": "00아 미안하지만 이번엔 너가 진것같구나."},
+            {"Player": "감사합니다.. 감사합니다, 할아버지!"},
+            {"Grandfather": "00이는 나랑 잠깐 얘기하자꾸나. 그동안 너는 장작과 물고기를 구해오겠니?"},
+            {"Player":"네. 다녀올게요."}
+            ],
+        "questFinish": [
+            {"Grandfather": "수고했다. 좀 쉬다가 다시 오거라."}
+            ]
+        },
+        {"questID": "qeust14",
+        "questNPC" : ["Grandfather","Farmming_NPC_1"],
+        "require": [{"guide": 10}, {"minigame":1}],
+        "questStatus" : 0,
+        "questDialog":[
+            {"Grandfather": "자, 이제 앞으로는 네가 공방의 주인이다."},
+            {"Player": "네? 벌써요?"},
+            {"Grandfather": "나도 이제 쉬어야지. 이젠 안돼, 안돼. 앞으로는 공방에 대해 알려주마."},
+            {"Player": "네...."},
+            {"Grandfather": "공방에서 석기도 판매할테니 마을 사람들에게 홍보 좀 하고 와라. 농장부터 가라. 우리 공방에 가장 많이 오는 분들이다."}
+            ],
+        "questFinish": [
+            {"Farmming_NPC_1": ""}
             ]
         }
     ]
