@@ -6,7 +6,6 @@ using UnityEngine;
 public class KSO_Custom_Left : MonoBehaviour
 {
     public GameObject[] gameObjects;
-    private static string selectedObj;
     private int count = 0;
 
     private void Start()

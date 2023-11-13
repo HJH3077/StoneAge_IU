@@ -10,23 +10,7 @@ public class KSO_Custom_Right : MonoBehaviour
 
     private void Start()
     {
-        switch (gameObject.name)
-        {
-            case "HairTxt":
-                PlayerPrefs.SetString("Hair", gameObjects[count].name);
-                break;
-            case "SkinTxt":
-                PlayerPrefs.SetString("Skin", gameObjects[count].name);
-                break;
-            case "BeardTxt":
-                PlayerPrefs.SetString("Beard", gameObjects[count].name);
-                break;
-            case "NeckTxt":
-                PlayerPrefs.SetString("Neck", gameObjects[count].name);
-                break;
-            default:
-                break;
-        }
+
     }
 
     public void OnClick()
