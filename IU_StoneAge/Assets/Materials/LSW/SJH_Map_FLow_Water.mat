@@ -142,11 +142,11 @@ Material:
     - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthGradientDeep: {r: 0.398048, g: 0.1634745, b: 0.7735849, a: 0.84705883}
-    - _DepthGradientShallow: {r: 0.40923816, g: 0.76982665, b: 0.7830189, a: 0.409}
+    - _DepthGradientDeep: {r: 0.11238872, g: 0.18634479, b: 0.7735849, a: 0.84705883}
+    - _DepthGradientShallow: {r: 0.40784314, g: 0.52024174, b: 0.78431374, a: 0.409}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 0.12941177}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0.3137255}
     - _FoamTint: {r: 1, g: 1, b: 1, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SurfaceColor: {r: 0.43295836, g: 0.5616246, b: 0.6691177, a: 1}
