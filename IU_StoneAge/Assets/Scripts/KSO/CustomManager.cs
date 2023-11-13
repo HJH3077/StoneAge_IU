@@ -73,7 +73,7 @@ public class CustomManager : MonoBehaviour
             {"Prehistoric_Male_Avatar_1A", "Prehistoric_Female_Avatar_1D"},
             {"Prehistoric_Male_Beard_1A", null},
             {"Prehistoric_Male_Torso_Necklace_1A", null},
-            {"TorseA", "TorsoD"},
+            {"TorsoA", "TorsoD"},
             {"ForeArmA1", "ForearmWrapD"},
             {"Prehistoric_Male_Hips_1A", null},
             {"BootA", "BootA"},

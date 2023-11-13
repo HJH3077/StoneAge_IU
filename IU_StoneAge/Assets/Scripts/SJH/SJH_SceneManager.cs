@@ -49,7 +49,8 @@ public class SJH_SceneManager : MonoBehaviour
                 // 커스터마이징 이름으로 활성화
                 foreach (string key in keys)
                 {
-                    femalePlayer.transform.Find(key).gameObject.SetActive(true);
+                    Debug.Log(PlayerPrefs.GetString(key));
+                    femalePlayer.transform.Find(PlayerPrefs.GetString(key)).gameObject.SetActive(true);
                 }
             }
 

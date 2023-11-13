@@ -43,6 +43,21 @@ public class KSO_Custom_Right : MonoBehaviour
             case "NeckTxt":
                 PlayerPrefs.SetString("Neck", gameObjects[count].name);
                 break;
+            case "TorsoTxt":
+                PlayerPrefs.SetString("Torso", gameObjects[count].name);
+                break;
+            case "ForeArmTxt":
+                PlayerPrefs.SetString("ForeArm", gameObjects[count].name);
+                break;
+            case "HipsTxt":
+                PlayerPrefs.SetString("Hips", gameObjects[count].name);
+                break;
+            case "BootTxt":
+                PlayerPrefs.SetString("Boot", gameObjects[count].name);
+                break;
+            case "Shin_WrapTxt":
+                PlayerPrefs.SetString("Shin_Wrap", gameObjects[count].name);
+                break;
             default:
                 break;
         }
