@@ -1,0 +1,9 @@
+[
+  {
+    "itemName": "실패결과물",
+    "itemID": 0,
+    "itemImage": "HJH_Sprites/bomb_32x32",
+    "itemCount": 2,
+    "isStackable": true
+  }
+]

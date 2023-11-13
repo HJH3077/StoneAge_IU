@@ -1,32 +1,32 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class Fishing : MonoBehaviour
 {
-	public float maxGauge = 100f;		// 최대 게이지 값
-	public float decreaseSpeed = 10f;	// 게이지 감소 속도
-	public float increaseAmount = 20f;	// 버튼을 연타하여 게이지 증가량
+	public float maxGauge = 100f;       // 최대 게이지 값
+	public float decreaseSpeed = 10f;   // 게이지 감소 속도
+	public float increaseAmount = 20f;  // 버튼을 연타하여 게이지 증가량
 
-	public Slider gaugeSlider;			// 게이지를 표시할 UI Slider
-	public Button tapButton;			// 연타할 버튼
+	public Slider gaugeSlider;          // 게이지를 표시할 UI Slider
+	public Button tapButton;            // 연타할 버튼
 
 	private float currentGauge;         // 현재 게이지 값
 
 	public Text startText;                  // 시작 메시지를 표시할 Text 컴포넌트
 	public bool isGameStart = false;        // 게임이 시작되었는지 여부
 
-	public float totalTime = 10f;			// 총 제한 시간
-	private float remainingTime;			// 남은 시간
-	public Text timerText;					// UI에 표시될 타이머 텍스트
+	public float totalTime = 10f;           // 총 제한 시간
+	private float remainingTime;            // 남은 시간
+	public Text timerText;                  // UI에 표시될 타이머 텍스트
 
 	private void Start()
 	{
 		currentGauge = 0;
-		remainingTime = totalTime;			// 남은 시간 초기화
+		remainingTime = totalTime;          // 남은 시간 초기화
 		UpdateGaugeUI();
 
-		StartCoroutine(GameStart());     
+		StartCoroutine(GameStart());
 	}
 
 	private void Update()
@@ -69,7 +69,7 @@ public class Fishing : MonoBehaviour
 
 	public void OnTapButtonClicked()
 	{
-		if (!isGameStart)	// 이거 때문에 오류가 발생하는거 같기도? 
+		if (!isGameStart)   // 이거 때문에 오류가 발생하는거 같기도? 
 		{
 			return;
 		}
