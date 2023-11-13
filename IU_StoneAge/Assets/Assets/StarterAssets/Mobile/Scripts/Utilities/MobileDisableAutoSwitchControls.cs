@@ -8,6 +8,7 @@ For the time-being; this script will disable a PlayerInput's auto switch control
 */
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 #if ENABLE_INPUT_SYSTEM
 #endif
 
