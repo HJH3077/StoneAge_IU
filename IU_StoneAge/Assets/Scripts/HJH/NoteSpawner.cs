@@ -17,12 +17,17 @@ public class NoteSpawner : MonoBehaviour
 	int failCnt = 0;                        // 실패 카운트
 	int remainCnt = 0;                      // 제거해야 할 노트 카운트
 
-	public Text startText;                  // 시작 메시지를 표시할 Text 컴포넌트
 	public bool isGameStart = false;        // 게임이 시작되었는지 여부
 
 	public float totalTime = 10f;           // 총 제한 시간
 	private float remainingTime;            // 남은 시간
 	public Text timerText;                  // UI에 표시될 타이머 텍스트
+
+	public Text startComment;           // 시작 시 설명 멘트를 표시할 Text 컴포넌트
+	public Text startText;              // 시작 메시지를 표시할 Text 컴포넌트
+	public AudioClip bgmSound;          // 배경 사운드 클립
+	public AudioClip startSound;        // Start 사운드 클립
+	private AudioSource audioSource;    // 오디오 소스 컴포넌트
 
 	void Start()
 	{
@@ -30,6 +35,7 @@ public class NoteSpawner : MonoBehaviour
 		successCnt = 0;
 		failCnt = 0;
 		remainCnt = 0;
+		audioSource = GetComponent<AudioSource>();
 
 		remainingTime = totalTime;          // 남은 시간 초기화
 
@@ -80,13 +86,14 @@ public class NoteSpawner : MonoBehaviour
 			remainingTime -= Time.deltaTime;
 
 			// UI에 남은 시간 표시
-			timerText.text = "남은시간 : " + Mathf.RoundToInt(remainingTime).ToString();
+			timerText.text = "제한 시간 : " + Mathf.RoundToInt(remainingTime).ToString();
 		}
 		else if (successCnt + failCnt == 8)
 		{
 			// 게임 완료 시 작동
 			Debug.Log("게임 종료!!");
 			isGameStart = false;
+			audioSource.Stop();
 		}
 		else
 		{
@@ -110,6 +117,7 @@ public class NoteSpawner : MonoBehaviour
 			}
 
 			isGameStart = false;
+			audioSource.Stop();
 			Debug.Log("타임 오버!!");
 		}
 	}
@@ -162,13 +170,21 @@ public class NoteSpawner : MonoBehaviour
 
 	private IEnumerator GameStart()
 	{
-		yield return new WaitForSeconds(0.5f);
+		// Start 텍스트와 Start 사운드 재생
+		//yield return new WaitForSeconds(1f);
+		audioSource.PlayOneShot(startSound);
+		startComment.gameObject.SetActive(true);
+		startText.gameObject.SetActive(false);
+
+		yield return new WaitForSeconds(2.1f);
+		startComment.gameObject.SetActive(false);
 		startText.gameObject.SetActive(true);
 
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(0.5f);
 		startText.gameObject.SetActive(false);
 
 		// 게임 진행
+		audioSource.PlayOneShot(bgmSound);
 		isGameStart = true;
 	}
 }

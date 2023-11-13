@@ -16,8 +16,9 @@ public class StarCatch : MonoBehaviour
 	public Sprite failImage;        // 체크 실패 시 이미지
 	int checkCount = 0;             // 체크박스 카운트
 
+	public Text startComment;           // 시작 시 설명 멘트를 표시할 Text 컴포넌트
 	public Text startText;              // 시작 메시지를 표시할 Text 컴포넌트
-										//public AudioClip readySound;		// Ready 사운드 클립
+	//public AudioClip readySound;		// Ready 사운드 클립
 	public AudioClip startSound;        // Start 사운드 클립
 	public AudioClip bgmSound;          // 배경 사운드 클립
 	private AudioSource audioSource;    // 오디오 소스 컴포넌트
@@ -91,6 +92,7 @@ public class StarCatch : MonoBehaviour
 		if (checkCount == 3)
 		{
 			Debug.Log("게임 종료!!!");
+			audioSource.Stop();
 			isMovingRight = false;
 			isGameStart = false;
 
@@ -115,11 +117,15 @@ public class StarCatch : MonoBehaviour
 		//yield return new WaitForSeconds(1f);
 
 		// Start 텍스트와 Start 사운드 재생
-		yield return new WaitForSeconds(0.3f);
-		startText.gameObject.SetActive(true);
 		audioSource.PlayOneShot(startSound);
+		startComment.gameObject.SetActive(true);
+		startText.gameObject.SetActive(false);
 
-		yield return new WaitForSeconds(3.5f);
+		yield return new WaitForSeconds(2.1f);
+		startComment.gameObject.SetActive(false);
+		startText.gameObject.SetActive(true);
+
+		yield return new WaitForSeconds(0.5f);
 		startText.gameObject.SetActive(false);
 
 		// 게임 진행

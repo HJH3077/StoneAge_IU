@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json.Linq;
 
 public class HJH_Inventory : MonoBehaviour
 {
@@ -61,23 +63,79 @@ public class HJH_Inventory : MonoBehaviour
 	// 인벤토리 데이터를 JSON 파일로 저장하는 함수
 	private void SaveInventoryData()
 	{
-		InventoryData inventoryData = new InventoryData(items); // 인벤토리 데이터 객체 생성
-		string jsonData = JsonUtility.ToJson(inventoryData);    // 인벤토리 데이터를 JSON 형식으로 직렬화
+		JArray itemsArray = new JArray();
+		foreach (Item item in items)
+		{
+			JObject itemObject = new JObject();
+			itemObject["itemName"] = item.itemName;
+			itemObject["itemID"] = item.itemID;
+			itemObject["itemImage"] = GetImagePath(item.itemImage); // 이미지의 경로 저장
+			itemObject["itemCount"] = item.itemCount;
+			itemObject["isStackable"] = item.isStackable;
 
-		File.WriteAllText(filePath, jsonData); // 파일에 데이터 기록
+			itemsArray.Add(itemObject);
+		}
+
+		string jsonString = itemsArray.ToString();
+		File.WriteAllText(filePath, jsonString);
 
 		Debug.Log("인벤토리 데이터를 저장했습니다.");
 	}
+
+	private string GetImagePath(Sprite sprite)
+	{
+		string imagePath = ""; // 이미지 경로 변수
+
+		// 이미지 파일이 Resources 폴더에 저장된 경우
+		imagePath = "HJH_Sprites/" + sprite.name;
+
+		// 상대 경로나 절대 경로에 따라 적절한 방법으로 imagePath를 설정해야 합니다.
+
+		return imagePath;
+	}
+
+	private Sprite LoadSpriteFromPath(string imagePath)
+	{
+		Sprite sprite = null; // 로드된 Sprite 객체
+
+		// Resources 폴더에 저장된 이미지를 로드하는 경우
+		sprite = Resources.Load<Sprite>(imagePath);
+
+		// 상대 경로나 절대 경로에 따라 적절한 방법으로 이미지를 로드해야 합니다.
+
+		return sprite;
+	}
+
 
 	// JSON 파일에서 인벤토리 데이터를 로드하는 함수
 	private void LoadInventoryData()
 	{
 		if (File.Exists(filePath))
 		{
-			string jsonData = File.ReadAllText(filePath); // 파일에서 데이터 읽기
-			InventoryData inventoryData = JsonUtility.FromJson<InventoryData>(jsonData); // JSON 데이터를 객체로 역직렬화
+			//string jsonData = File.ReadAllText(filePath); // 파일에서 데이터 읽기
+			//InventoryData inventoryData = JsonUtility.FromJson<InventoryData>(jsonData); // JSON 데이터를 객체로 역직렬화
 
-			items = inventoryData.items; // 로드한 데이터로 인벤토리 아이템 리스트 업데이트
+			//items = inventoryData.items; // 로드한 데이터로 인벤토리 아이템 리스트 업데이트
+
+			string jsonData = File.ReadAllText(filePath);
+			JArray itemsArray = JArray.Parse(jsonData);
+
+			items.Clear();
+
+			foreach (JObject itemObject in itemsArray)
+			{
+				string itemName = itemObject["itemName"].ToString();
+				int itemID = int.Parse(itemObject["itemID"].ToString());
+				string imagePath = itemObject["itemImage"].ToString();
+				int itemCount = int.Parse(itemObject["itemCount"].ToString());
+				bool isStackable = bool.Parse(itemObject["isStackable"].ToString());
+
+				// 이미지를 로드하여 Sprite로 변환
+				Sprite itemImage = LoadSpriteFromPath(imagePath);
+
+				Item item = new Item(itemName, itemID, itemImage, itemCount, isStackable);
+				items.Add(item);
+			}
 
 			// 다음 장비 아이템 ID 설정
 			int maxEquipmentItemID = 0;
@@ -200,12 +258,6 @@ public class HJH_Inventory : MonoBehaviour
 		// 인벤토리 UI 업데이트
 		StartCoroutine(UpdateInventoryCoroutine());
 	}
-
-	//private void Update()
-	//{
-	//	// 인벤토리 UI 업데이트
-	//	UpdateInventory();
-	//}
 
 	private IEnumerator UpdateInventoryCoroutine()
 	{
