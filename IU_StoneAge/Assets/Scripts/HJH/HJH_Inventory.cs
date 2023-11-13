@@ -89,8 +89,6 @@ public class HJH_Inventory : MonoBehaviour
 		// 이미지 파일이 Resources 폴더에 저장된 경우
 		imagePath = "HJH_Sprites/" + sprite.name;
 
-		// 상대 경로나 절대 경로에 따라 적절한 방법으로 imagePath를 설정해야 합니다.
-
 		return imagePath;
 	}
 
@@ -100,8 +98,6 @@ public class HJH_Inventory : MonoBehaviour
 
 		// Resources 폴더에 저장된 이미지를 로드하는 경우
 		sprite = Resources.Load<Sprite>(imagePath);
-
-		// 상대 경로나 절대 경로에 따라 적절한 방법으로 이미지를 로드해야 합니다.
 
 		return sprite;
 	}
