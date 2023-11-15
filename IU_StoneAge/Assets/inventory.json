@@ -1,9 +1,23 @@
 [
   {
-    "itemName": "실패결과물",
+    "itemName": "깨진 돌조각",
     "itemID": 0,
-    "itemImage": "HJH_Sprites/bomb_32x32",
-    "itemCount": 2,
+    "itemImage": "HJH_Sprites/Broken_Stone",
+    "itemCount": 12,
     "isStackable": true
+  },
+  {
+    "itemName": "주먹도끼",
+    "itemID": 1,
+    "itemImage": "HJH_Sprites/handaxe",
+    "itemCount": 1,
+    "isStackable": false
+  },
+  {
+    "itemName": "주먹도끼",
+    "itemID": 2,
+    "itemImage": "HJH_Sprites/handaxe",
+    "itemCount": 1,
+    "isStackable": false
   }
 ]
