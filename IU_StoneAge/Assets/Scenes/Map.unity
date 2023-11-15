@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2035226, g: 0.42831346, b: 0.5434526, a: 1}
+  m_IndirectSpecularColor: {r: 0.20352247, g: 0.42831331, b: 0.5434526, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1057,7 +1057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 58832638}
   m_Layer: 0
-  m_Name: TorseB
+  m_Name: TorsoB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18200,7 +18200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637461024}
   m_Layer: 0
-  m_Name: TorseA
+  m_Name: TorsoA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30928,7 +30928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1090039809}
   m_Layer: 0
-  m_Name: TorseC
+  m_Name: TorsoC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57578,7 +57578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1642311669}
   m_Layer: 0
-  m_Name: TorseD
+  m_Name: TorsoD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
