@@ -19,27 +19,4 @@ public class SJH_MiniMapDot : MonoBehaviour
 			transform.rotation = Quaternion.Euler(0, 180, 0);
 		}
 	}
-
-	public void dotUpdate()
-	{
-		if (PlayerPrefs.GetInt("QuestClear") == 0 && QuestManager.SetQuestNPC() == player.name)
-		{
-			SJH_MiniMapDot[] dots = player.GetComponentsInChildren<SJH_MiniMapDot>();
-			foreach (var item in dots)
-			{
-				if (item.name == "NPC_dot_usable")
-				{
-					item.gameObject.SetActive(true);
-				}
-				else
-				{
-					item.gameObject.SetActive(false);
-				}
-			}
-		}
-		else if (PlayerPrefs.GetInt("QuestClear") == 1 && QuestManager.SetQuestNPC() == player.name)
-		{
-
-		}
-    }
 }
