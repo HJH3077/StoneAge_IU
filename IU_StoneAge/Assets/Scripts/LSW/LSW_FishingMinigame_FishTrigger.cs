@@ -17,7 +17,8 @@ public class LSW_FishingMinigame_FishTrigger : MonoBehaviour
 			if (other.CompareTag("CatchingBar") && !beingCaught)
 			{
 				beingCaught = true;
-				minigameController.FishInBar();
+				PlayerPrefs.SetInt("QuestClear", 1);
+                minigameController.FishInBar();
 			}
 		}
 	}

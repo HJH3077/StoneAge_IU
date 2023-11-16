@@ -48,13 +48,21 @@ public class LSW_FishingMinigame : MonoBehaviour
     [SerializeField] private float catchingForce; //How much force to push the catchingbar up by
 
 
-	/// //
+	/// // <summary>
+	
+	/// </summary>
 
 	//[SerializeField] private GameObject canvas_Fishing;
 	//public TextMeshPro textfishCount;
     public string fishName;
-	public int fishCount;
+    public string fishSprite;
+    public int fishCount;
 	public int fishLevel;
+	public bool IscheckFish = false;
+
+	public AudioClip caughtfishSound;
+	public AudioSource _caughtfishSound;
+
 
     private void Start() {
 
@@ -68,19 +76,22 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    if (!reelingFish) { //If we arent currently in the reeling stage
 		    if (Input.GetKeyDown(fishingKey) && !lineCast) 
 			{ //This is if we are doing nothing and are ready to cast a line
+			  //lineCast = true;
+				Debug.Log("낚시시작:캐스팅");
 				CastLine();
 		    }
 			else if (Input.GetKeyDown(fishingKey) && lineCast && !nibble) 
 			{ //This is if the line has cast and we reel in before we get a nibble
 			    StopAllCoroutines(); //Stops the WaitForNibble timer
 			    lineCast = false; //Resets the line being cast
-			    
+				Debug.Log("실패");
 			    //Resets the thought bubbles
 			    thoughtBubbles.GetComponent<Animator>().SetTrigger("Reset");
 				thoughtBubbles.SetActive(false);
 			    
 		    }else if (Input.GetKeyDown(fishingKey) && lineCast && nibble) { //This is if we reel in while there is a nibble
-			    StopAllCoroutines(); //Stops the LineBreak timer
+				Debug.Log("히트 미끼를 물었다!!");
+				StopAllCoroutines(); //Stops the LineBreak timer
 			    StartReeling();
 		    }
 	    } 
@@ -110,13 +121,21 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    if (catchPercentage >= 100) { //Fish is caught if percentage is full
 		    catchPercentage = 0;
 		    FishCaught();
+			
+			
+            
             var tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
 
             fishBar2.GetComponent<Image>().sprite = tempSprite;
          		
         }
-        
 
+        if (IscheckFish == true)
+        {
+            caughtfishSound = GetComponentInChildren<AudioClip>();
+            _caughtfishSound.Play();
+        }
+		IscheckFish = false;
     }
     
     //Called to cast our line
@@ -135,7 +154,7 @@ public class LSW_FishingMinigame : MonoBehaviour
     }
     
     //Used to start the minigame
-    private void StartReeling() {
+    public void StartReeling() {
 	    reelingFish = true;
 	    
 	    nibble = false;
@@ -167,9 +186,10 @@ public class LSW_FishingMinigame : MonoBehaviour
     private IEnumerator LineBreak(float lineBreakTime) {
 	    yield return new WaitForSeconds(lineBreakTime);
 	    Debug.Log("Line Broke!");
-	    
-	    //Disable thought bubbles
-	    thoughtBubbles.GetComponent<Animator>().SetTrigger("Reset");
+        Debug.Log("줄이 끊겼다.");
+
+        //Disable thought bubbles
+        thoughtBubbles.GetComponent<Animator>().SetTrigger("Reset");
 	    thoughtBubbles.SetActive(false);
 	    
 	    lineCast = false;
@@ -190,6 +210,9 @@ public class LSW_FishingMinigame : MonoBehaviour
 
     //Called when the catchpercentage hits 100
     public void FishCaught() {
+		
+		IscheckFish = true;
+
 	    if (currentFishOnLine == null) { //This picks a new fish if the old one is lost by chance
 		    currentFishOnLine = LSW_FishManager.GetRandomFish();
 	    }
@@ -201,19 +224,22 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    minigameCanvas.SetActive(false); //Disable the fishing canvas
 	    catchingbar.transform.localPosition = catchingBarLoc; //Reset the catching bars position
 
-	
-        //canvas_Fishing.SetActive(true);
 
-        //textfishCount.text = fishCount.ToString();
-        //textfishCount.GetComponent<TextMeshPro>().text = "sdfsdf" + fishCount.ToString();
-       
+		//canvas_Fishing.SetActive(true);
+
+		//textfishCount.text = fishCount.ToString();
+		//textfishCount.GetComponent<TextMeshPro>().text = "sdfsdf" + fishCount.ToString();
+		Fishnamecount(currentFishOnLine.name, currentFishOnLine.spriteID, currentFishOnLine.baseCost, currentFishOnLine.spokeWeight);
     }
 
-    public void Fishnamecount(string _name, int _count,int _level)
+    public void Fishnamecount(string _name, string _fishSprite, int _count,int _level)
     {
         this.fishName = _name;
+		this.fishSprite = _fishSprite;
 		this.fishCount = _count;
 		this.fishLevel = _level;
+
+		
     }
 
 	//Classic mapping script x
