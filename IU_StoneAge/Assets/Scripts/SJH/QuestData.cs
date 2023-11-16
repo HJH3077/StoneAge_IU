@@ -6,7 +6,7 @@ public class QuestData : MonoBehaviour
 {
     public static string[] questNPCs =
     {
-        "Player",
+        "GrandFather",
         "GrandFather",
         "GrandFather",
         "Crafting_NPC_1",

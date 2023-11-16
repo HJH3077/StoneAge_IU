@@ -15,6 +15,7 @@ TagManager:
   - GrandFather
   - BlackSmith
   - CinemachineTarget
+  - MiniMap Dot
   layers:
   - Default
   - TransparentFX
