@@ -3,19 +3,33 @@
     "itemName": "깨진 돌조각",
     "itemID": 0,
     "itemImage": "HJH_Sprites/Broken_Stone",
-    "itemCount": 12,
+    "itemCount": 1,
+    "isStackable": true
+  },
+  {
+    "itemName": "농어",
+    "itemID": -3,
+    "itemImage": "HJH_Sprites/fish_3",
+    "itemCount": 2,
+    "isStackable": true
+  },
+  {
+    "itemName": "연어",
+    "itemID": -2,
+    "itemImage": "HJH_Sprites/fish_2",
+    "itemCount": 2,
+    "isStackable": true
+  },
+  {
+    "itemName": "붕어",
+    "itemID": -1,
+    "itemImage": "HJH_Sprites/fish_1",
+    "itemCount": 1,
     "isStackable": true
   },
   {
     "itemName": "주먹도끼",
     "itemID": 1,
-    "itemImage": "HJH_Sprites/handaxe",
-    "itemCount": 1,
-    "isStackable": false
-  },
-  {
-    "itemName": "주먹도끼",
-    "itemID": 2,
     "itemImage": "HJH_Sprites/handaxe",
     "itemCount": 1,
     "isStackable": false

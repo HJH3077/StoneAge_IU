@@ -27,13 +27,11 @@ public class StarCatch : MonoBehaviour
 
 	int resultCnt = 0;					// 결과 카운트
 	public Sprite[] resultImages;		// 결과물 이미지
-	GameObject inventoryUI;
 
 	private HJH_Result hjh_Result;
 
 	private void Start()
 	{
-		inventoryUI = GameObject.Find("Inventory");
 		hjh_Result = GetComponent<HJH_Result>();
 
 		checkCount = 0;
@@ -111,17 +109,14 @@ public class StarCatch : MonoBehaviour
 			isMovingRight = false;
 			isGameStart = false;
 
-			HJH_Inventory inventory = inventoryUI.GetComponent<HJH_Inventory>();
 			if (resultCnt >= 2)
 			{
 				Debug.Log(hjh_Result);
-				hjh_Result.SetResult(true, "주먹도끼", resultImages[0]);
-				inventory.CraftItem("주먹도끼", resultImages[0], true);
+				hjh_Result.SetResult("주먹도끼", resultImages[0], true);
 			}
 			else
 			{
-				hjh_Result.SetResult(false, "깨진 돌조각", resultImages[1]);
-				inventory.CraftItem("깨진 돌조각", resultImages[1], false);
+				hjh_Result.SetResult("깨진 돌조각", resultImages[1], false);
 			}
 		}
 	}

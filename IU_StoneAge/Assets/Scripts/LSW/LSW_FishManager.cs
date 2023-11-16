@@ -18,12 +18,14 @@ public static class LSW_FishManager
     [RuntimeInitializeOnLoadMethod]
     public static void InitFishManager() {
         //Access the csv file that contains fish data
-        var textAsset = Resources.Load<TextAsset>("CSV/LSW_Fish_exal");
-       
+        var textAsset = Resources.Load<TextAsset>("CSV/Fish 1");
+
         //Split the text asset up into each line
         var splitData = textAsset.text.Split('\n');
         foreach (var line in splitData) { //Loop through the array we made of each line
+            Debug.Log(line);
             var lineData = line.Split(','); //Split each line up at the comma
+            if (lineData.Length < 4) break;
             if (lineData[0] != "Fish Name") { //Fish Name is contained on the first row, so we ignore that
                 var newFish = new LSW_Fish(lineData[0], lineData[1], Int32.Parse(lineData[2]), Int32.Parse(lineData[3])); //We then create a fish instance with the info we have read
                 allFish.Add(newFish); //Add the new fish to the list

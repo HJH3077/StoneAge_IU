@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -31,7 +32,7 @@ public class LSW_FishingMinigame : MonoBehaviour
     
     //This is the fish on the UI that you are chasing to catch
     [SerializeField] private GameObject fishBar;
-	public GameObject fishBar2;
+	//public GameObject fishBar2;
 
     private LSW_FishingMinigame_FishTrigger fishTrigger; //Reference to this script on the fish
     private bool inTrigger = false; //Whether or not the fish is inside the "catchingbar"
@@ -43,17 +44,19 @@ public class LSW_FishingMinigame : MonoBehaviour
 	[SerializeField] private GameObject minigameCanvas;
 
     [Header("Settings")]
-    [SerializeField] private KeyCode fishingKey = KeyCode.Space; //Key used to play
+    //[SerializeField] private KeyCode fishingKey = KeyCode.Space; //Key used to play
+	//[SerializeField] private MouseButton touchKey = MouseButton.Left;
     [SerializeField] private float catchMultiplier = 10f; //Higher means catch fish faster x
     [SerializeField] private float catchingForce; //How much force to push the catchingbar up by
 
+    private LSW_Result lsw_Result;
 
-	/// // <summary>
-	
-	/// </summary>
+    /// // <summary>
 
-	//[SerializeField] private GameObject canvas_Fishing;
-	//public TextMeshPro textfishCount;
+    /// </summary>
+
+    //[SerializeField] private GameObject canvas_Fishing;
+    //public TextMeshPro textfishCount;
     public string fishName;
     public string fishSprite;
     public int fishCount;
@@ -62,11 +65,13 @@ public class LSW_FishingMinigame : MonoBehaviour
 
 	public AudioClip caughtfishSound;
 	public AudioSource _caughtfishSound;
+	Sprite tempSprite;
 
 
     private void Start() {
+        lsw_Result = GetComponent<LSW_Result>();
 
-	    catchingBarRB = catchingbar.GetComponent<Rigidbody2D>(); //Get reference to the Rigidbody on the catchingbar
+        catchingBarRB = catchingbar.GetComponent<Rigidbody2D>(); //Get reference to the Rigidbody on the catchingbar
 	    catchingBarLoc = catchingbar.GetComponent<RectTransform>().localPosition; //Use this to reset the catchingbars position to the bottom of the "water"
 		//canvas_Fishing.SetActive(false);
 		
@@ -74,13 +79,14 @@ public class LSW_FishingMinigame : MonoBehaviour
 
     private void Update() {
 	    if (!reelingFish) { //If we arent currently in the reeling stage
-		    if (Input.GetKeyDown(fishingKey) && !lineCast) 
-			{ //This is if we are doing nothing and are ready to cast a line
-			  //lineCast = true;
-				Debug.Log("낚시시작:캐스팅");
+                            //if ((Input.GetKeyDown(fishingKey) && !lineCast) || Input.GetMouseButtonDown(0)) 
+            if (Input.GetMouseButtonDown(0) && !lineCast)
+            { //This is if we are doing nothing and are ready to cast a line
+              //lineCast = true;
+                Debug.Log("낚시시작:캐스팅");
 				CastLine();
 		    }
-			else if (Input.GetKeyDown(fishingKey) && lineCast && !nibble) 
+			else if ((Input.GetMouseButtonDown(0) && lineCast && !nibble)) 
 			{ //This is if the line has cast and we reel in before we get a nibble
 			    StopAllCoroutines(); //Stops the WaitForNibble timer
 			    lineCast = false; //Resets the line being cast
@@ -89,7 +95,7 @@ public class LSW_FishingMinigame : MonoBehaviour
 			    thoughtBubbles.GetComponent<Animator>().SetTrigger("Reset");
 				thoughtBubbles.SetActive(false);
 			    
-		    }else if (Input.GetKeyDown(fishingKey) && lineCast && nibble) { //This is if we reel in while there is a nibble
+		    }else if (Input.GetMouseButtonDown(0) && lineCast && nibble) { //This is if we reel in while there is a nibble
 				Debug.Log("히트 미끼를 물었다!!");
 				StopAllCoroutines(); //Stops the LineBreak timer
 			    StartReeling();
@@ -98,7 +104,7 @@ public class LSW_FishingMinigame : MonoBehaviour
 
 		else 
 		{ //This is when we are in the stage where we are fighitng for the fish
-		    if (Input.GetKey(fishingKey)) { //If we press space
+		    if (Input.GetMouseButton(0)) { //If we press space
 			    catchingBarRB.AddForce(Vector2.up * catchingForce * Time.deltaTime, ForceMode2D.Force); //Add force to lift the bar
 		    }
 	    }
@@ -126,14 +132,14 @@ public class LSW_FishingMinigame : MonoBehaviour
             
             var tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
 
-            fishBar2.GetComponent<Image>().sprite = tempSprite;
+            //fishBar2.GetComponent<Image>().sprite = tempSprite;
          		
         }
 
         if (IscheckFish == true)
         {
-            caughtfishSound = GetComponentInChildren<AudioClip>();
-            _caughtfishSound.Play();
+            //caughtfishSound = GetComponentInChildren<AudioClip>();
+            //_caughtfishSound.Play();
         }
 		IscheckFish = false;
     }
@@ -162,7 +168,7 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    
 	    //Set up the fish we are catching
 	    currentFishOnLine = LSW_FishManager.GetRandomFishWeighted();
-	    var tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
+	    tempSprite = Resources.Load<Sprite>($"FishSprites/{currentFishOnLine.spriteID}"); //Get fish sprite from our resources file
 		
 		fishBar.GetComponent<Image>().sprite = tempSprite;
         
@@ -224,26 +230,42 @@ public class LSW_FishingMinigame : MonoBehaviour
 	    minigameCanvas.SetActive(false); //Disable the fishing canvas
 	    catchingbar.transform.localPosition = catchingBarLoc; //Reset the catching bars position
 
+		if (IscheckFish)
+		{
+			switch (currentFishOnLine.name)
+			{
+				case "Crucian":
+					lsw_Result.SetFishResult("붕어", tempSprite);
+					break;
+				case "Salmon":
+					lsw_Result.SetFishResult("연어", tempSprite);
+					break;
+				case "Yelloperch":
+					lsw_Result.SetFishResult("농어", tempSprite);
+					break;
+			}
+		}
 
-		//canvas_Fishing.SetActive(true);
 
-		//textfishCount.text = fishCount.ToString();
-		//textfishCount.GetComponent<TextMeshPro>().text = "sdfsdf" + fishCount.ToString();
-		Fishnamecount(currentFishOnLine.name, currentFishOnLine.spriteID, currentFishOnLine.baseCost, currentFishOnLine.spokeWeight);
+        //canvas_Fishing.SetActive(true);
+
+        //textfishCount.text = fishCount.ToString();
+        //textfishCount.GetComponent<TextMeshPro>().text = "sdfsdf" + fishCount.ToString();
+        //Fishnamecount(currentFishOnLine.name, currentFishOnLine.spriteID, currentFishOnLine.baseCost, currentFishOnLine.spokeWeight);
     }
 
-    public void Fishnamecount(string _name, string _fishSprite, int _count,int _level)
-    {
-        this.fishName = _name;
-		this.fishSprite = _fishSprite;
-		this.fishCount = _count;
-		this.fishLevel = _level;
+    //  public void Fishnamecount(string _name, string _fishSprite, int _count,int _level)
+    //  {
+    //      this.fishName = _name;
+    //this.fishSprite = _fishSprite;
+    //this.fishCount = _count;
+    //this.fishLevel = _level;
 
-		
-    }
 
-	//Classic mapping script x
-	private float Map(float a, float b, float c, float d, float x)
+    //  }
+
+    //Classic mapping script x
+    private float Map(float a, float b, float c, float d, float x)
 	{
 		return (x - a) / (b - a) * (d - c) + c;
 	}
