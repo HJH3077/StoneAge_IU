@@ -9603,7 +9603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1569013170
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10912,9 +10912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Success: {fileID: 268696594}
   Failed: {fileID: 1569013169}
-  images:
-  - {fileID: 21300000, guid: 08d482552488a5e4d932f714e553854c, type: 3}
-  - {fileID: 21300000, guid: 11fb7ca0ee2379344aed2f835169d113, type: 3}
+  inventoryUI: {fileID: 496490412}
 --- !u!1 &1752848414
 GameObject:
   m_ObjectHideFlags: 0

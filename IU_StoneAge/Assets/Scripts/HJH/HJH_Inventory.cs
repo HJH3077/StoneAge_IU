@@ -190,14 +190,49 @@ public class HJH_Inventory : MonoBehaviour
 	}
 
 	// 미니게임 종료 시 결과물 제작 함수
-	public void CraftItem(string itemName, Sprite itemImage, bool success)
+	public void CraftItem(string itemName, Sprite itemImage, bool success, bool isFishing)
 	{
 		if (success)
 		{
-			// 제작 성공 시 다음 장비 아이템 ID를 가진 장비 아이템 추가
-			Item equipmentItem = new Item(itemName, equipItemID, itemImage, 1, false);
-			equipItemID++; // 다음 장비 아이템 ID 증가
-			AddItem(equipmentItem);
+			if(!isFishing)
+			{
+				// 제작 성공 시 다음 장비 아이템 ID를 가진 장비 아이템 추가
+				Item equipmentItem = new Item(itemName, equipItemID, itemImage, 1, false);
+				equipItemID++; // 다음 장비 아이템 ID 증가
+				AddItem(equipmentItem);
+			}
+			else
+			{
+				Item fish;
+				bool itemExists = false;
+				if (itemName == "붕어")
+				{
+					fish = new Item(itemName, -1, itemImage, 1, true);
+				}
+				else if (itemName == "연어")
+				{
+					fish = new Item(itemName, -2, itemImage, 1, true);
+				}
+				else
+				{
+					fish = new Item(itemName, -3, itemImage, 1, true);
+				}
+
+				for (int i = 0; i < items.Count; i++)
+				{
+					if (items[i].itemID < 0 && items[i].isStackable)
+					{
+						IncrementItemCount(fish);
+						itemExists = true;
+						break;
+					}
+				}
+
+				if (!itemExists)
+				{
+					AddItem(fish);
+				}
+			}
 		}
 		else
 		{

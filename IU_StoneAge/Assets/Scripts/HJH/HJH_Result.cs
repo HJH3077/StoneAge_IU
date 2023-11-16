@@ -7,18 +7,13 @@ public class HJH_Result : MonoBehaviour
 {
 	public GameObject Success;                 // 성공 결과창
 	public GameObject Failed;                  // 실패 결과창
-	//int randomIndex;
 
-	public Sprite[] images; // 등록할 사진들을 저장할 배열
+	public GameObject inventoryUI;
+
 
 	// Start is called before the first frame update
 	void Start()
     {
-		//Success = GameObject.Find("Success");
-		//Failed = GameObject.Find("Failed");
-
-		//randomIndex = Random.Range(0, images.Length);
-
 		Success.SetActive(false);
 		Failed.SetActive(false);
 	}
@@ -35,8 +30,10 @@ public class HJH_Result : MonoBehaviour
 		}
 	}
 
-	public void SetResult(bool res, string itemName, Sprite itemImage)
+	public void SetResult(string itemName, Sprite itemImage, bool res)
 	{
+		HJH_Inventory inventory = inventoryUI.GetComponent<HJH_Inventory>();
+
 		if (res)
 		{
 			Image itemImg = Success.transform.Find("Pop/Middle/Item/ItemImage").GetComponent<Image>();
@@ -47,6 +44,9 @@ public class HJH_Result : MonoBehaviour
 
 			itemImg.sprite = itemImage;
 			itemTxt.text = itemName;
+
+			inventory.CraftItem(itemName, itemImage, true, false);
+			PlayerPrefs.SetInt("QuestClear", 1);
 		}
 		else
 		{
@@ -59,6 +59,27 @@ public class HJH_Result : MonoBehaviour
 			itemImg.sprite = itemImage;
 			//itemImg.sprite = images[randomIndex];
 			itemTxt.text = itemName;
+
+			inventory.CraftItem(itemName, itemImage, false, false);
 		}
 	}
+
+	public void SetFishResult(string itemName, Sprite itemImage)
+	{
+		HJH_Inventory inventory = inventoryUI.GetComponent<HJH_Inventory>();
+
+		Image itemImg = Success.transform.Find("Pop/Middle/Item/ItemImage").GetComponent<Image>();
+		Text itemTxt = Success.transform.Find("Pop/Bottom/ItemName").GetComponent<Text>();
+
+		Success.SetActive(true);
+		Failed.SetActive(false);
+
+		itemImg.sprite = itemImage;
+		itemTxt.text = itemName;
+
+		inventory.CraftItem(itemName, itemImage, true, true);
+		PlayerPrefs.SetInt("QuestClear", 1);
+	}
 }
+
+
