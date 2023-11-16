@@ -20,6 +20,7 @@ public class HJH_Inventory : MonoBehaviour
 	
 	public GameObject inventory;     
 	public GameObject information;
+	public GameObject itemContent;
 
 	private Item currentItem;           // 클릭한 버튼에 해당하는 아이템 정보
 
@@ -288,9 +289,19 @@ public class HJH_Inventory : MonoBehaviour
 			itemImage.sprite = currentItem.itemImage;
 
 			Text itemNameText = information.GetComponentInChildren<Text>();
+			Text itemInfo = itemContent.GetComponent<Text>();
+
 			itemNameText.text = currentItem.itemName;
 
-			// currentItem을 이용하여 Info UI에 해당 아이템 정보를 표시하는 로직 추가
+			if (currentItem.itemName == "깨진 돌조각")
+			{
+				itemInfo.text = "제작에 실패하고 남은 돌조각이다.";
+			}
+			else if (currentItem.itemName.Trim() == "주먹도끼")
+			{
+				itemInfo.text = "주먹에 쥐고 쓸 수 있는 도끼 형태의 뗀석기. 전기 구석기시대의 대표적인 석기이다. 원시인들은 이것을 손에 들고 다용도 도구로 사용했다.";
+			}
+			
 			Debug.Log("클릭한 아이템 정보: " + currentItem.itemName);
 		}
 	}

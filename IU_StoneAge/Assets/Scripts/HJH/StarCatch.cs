@@ -12,9 +12,9 @@ public class StarCatch : MonoBehaviour
 	public float maxCatchRange = 0.66f; // '캐치' 가능한 범위
 
 	public Image[] checkResult;         // 성공 여부 체크 이미지 배열
-	public Sprite successImage;     // 체크 성공 시 이미지
-	public Sprite failImage;        // 체크 실패 시 이미지
-	int checkCount = 0;             // 체크박스 카운트
+	public Sprite successImage;			// 체크 성공 시 이미지
+	public Sprite failImage;			// 체크 실패 시 이미지
+	int checkCount = 0;					// 체크박스 카운트
 
 	public Text startComment;           // 시작 시 설명 멘트를 표시할 Text 컴포넌트
 	public Text startText;              // 시작 메시지를 표시할 Text 컴포넌트
@@ -23,15 +23,18 @@ public class StarCatch : MonoBehaviour
 	public AudioClip bgmSound;          // 배경 사운드 클립
 	private AudioSource audioSource;    // 오디오 소스 컴포넌트
 
-	public bool isGameStart = false;        // 게임이 시작되었는지 여부
+	public bool isGameStart = false;    // 게임이 시작되었는지 여부
 
-	int resultCnt = 0;          // 결과 카운트
-	public Sprite[] resultImages;   // 결과물 이미지
+	int resultCnt = 0;					// 결과 카운트
+	public Sprite[] resultImages;		// 결과물 이미지
 	GameObject inventoryUI;
+
+	private HJH_Result hjh_Result;
 
 	private void Start()
 	{
 		inventoryUI = GameObject.Find("Inventory");
+		hjh_Result = GetComponent<HJH_Result>();
 
 		checkCount = 0;
 		resultCnt = 0;
@@ -66,7 +69,19 @@ public class StarCatch : MonoBehaviour
 			}
 		}
 
+
 		// '캐치' 확인
+		#region ### 터치 시 변경
+		// ### if (Input.GetKeyDown(KeyCode.Space)) 대신 사용
+		//	if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+		//	{
+		//		Vector3 touchPosition = Input.GetTouch(0).position;
+		//		GraphicRaycaster raycaster = GetComponent<GraphicRaycaster>();
+		//		PointerEventData eventData = new PointerEventData(EventSystem.current);
+		//		eventData.position = touchPosition;
+		//		List<RaycastResult> results = new List<RaycastResult>();
+		//		raycaster.Raycast(eventData, results);
+		#endregion
 		if (Input.GetKeyDown(KeyCode.Space)) // 스페이스바 누르면 "캐치" 시도
 		{
 			Image result = checkResult[checkCount].GetComponent<Image>();
@@ -99,11 +114,14 @@ public class StarCatch : MonoBehaviour
 			HJH_Inventory inventory = inventoryUI.GetComponent<HJH_Inventory>();
 			if (resultCnt >= 2)
 			{
-				// inventory.CraftItem("성공무기", resultImages[0], true);
+				Debug.Log(hjh_Result);
+				hjh_Result.SetResult(true, "주먹도끼", resultImages[0]);
+				inventory.CraftItem("주먹도끼", resultImages[0], true);
 			}
 			else
 			{
-				inventory.CraftItem("실패결과물", resultImages[1], false);
+				hjh_Result.SetResult(false, "깨진 돌조각", resultImages[1]);
+				inventory.CraftItem("깨진 돌조각", resultImages[1], false);
 			}
 		}
 	}
